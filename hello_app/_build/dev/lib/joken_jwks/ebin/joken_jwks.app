@@ -1,0 +1,12 @@
+{application,joken_jwks,
+             [{optional_applications,[]},
+              {applications,[kernel,stdlib,elixir,logger,joken,jason,tesla,
+                             hackney,telemetry]},
+              {description,"joken_jwks"},
+              {modules,['Elixir.JokenJwks',
+                        'Elixir.JokenJwks.DefaultStrategyTemplate',
+                        'Elixir.JokenJwks.HttpFetcher',
+                        'Elixir.JokenJwks.Middleware.Telemetry',
+                        'Elixir.JokenJwks.SignerMatchStrategy']},
+              {registered,[]},
+              {vsn,"1.6.0"}]}.

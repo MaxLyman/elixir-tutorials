@@ -1,0 +1,34 @@
+defmodule PetalComponents.Badge do
+  use Phoenix.Component
+
+  attr(:size, :string, default: "md", values: ["xs", "sm", "md", "lg", "xl"])
+  attr(:variant, :string, default: "light", values: ["light", "dark", "outline"])
+
+  attr(:color, :string,
+    default: "primary",
+    values: ["primary", "secondary", "info", "success", "warning", "danger", "gray"]
+  )
+
+  attr(:with_icon, :boolean, default: false, doc: "adds some icon base classes")
+  attr(:class, :string, default: "", doc: "CSS class for parent div")
+  attr(:label, :string, default: nil, doc: "label your badge")
+  attr(:rest, :global)
+  slot(:inner_block, required: false)
+
+  def badge(assigns) do
+    ~H"""
+    <badge
+      {@rest}
+      class={[
+        "pc-badge",
+        "pc-badge--#{@size}",
+        @with_icon && "pc-badge--with-icon",
+        "pc-badge--#{@color}-#{@variant}",
+        @class
+      ]}
+    >
+      <%= render_slot(@inner_block) || @label %>
+    </badge>
+    """
+  end
+end
